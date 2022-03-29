@@ -8,15 +8,8 @@ import { Recipes, RecipesApiService } from 'src/app/recipes-api.service';
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe!: Recipes;
-  @Output() emitRecipe = new EventEmitter<Recipes>();
 
-  constructor(private recipeApiService: RecipesApiService) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  onDeleteRecipe() {
-    this.recipeApiService.deleteRecipe(this.recipe.id).subscribe((res) => {
-      this.emitRecipe.emit(this.recipe);
-    });
-  }
 }

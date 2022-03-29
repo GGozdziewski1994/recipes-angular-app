@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Recipes, RecipesApiService } from 'src/app/recipes-api.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private recipesApiService: RecipesApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,5 +26,10 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  onDeleteRecipe() {}
+  onDeleteRecipe() {
+    this.recipesApiService.onDeleteRecipe(this.id).subscribe((res) => {
+      this.recipesApiService.deleteRecipe.next(this.recipe);
+    });
+    this.router.navigate(['recipes']);
+  }
 }

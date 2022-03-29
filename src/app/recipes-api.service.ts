@@ -25,6 +25,7 @@ export class RecipesApiService {
   // recipes: Recipes[] = [];
   searchRecipe = new Subject<string>();
   addRecipeSub = new Subject<Recipes>();
+  deleteRecipe = new Subject<Recipes>();
 
   constructor(private http: HttpClient) {}
 
@@ -44,7 +45,7 @@ export class RecipesApiService {
     return this.http.get<Recipes[]>(this.URL);
   }
 
-  deleteRecipe(id: number) {
+  onDeleteRecipe(id: number) {
     return this.http.delete<Recipes>(`${this.URL}/${id}`);
   }
 

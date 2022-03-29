@@ -1,20 +1,17 @@
-
 <div class="container">
   <div class="container-recipe">
     <div class="container-recipe-search">
-      <input class="serach-recipe" type="text" placeholder="Search">
+      <input
+        (input)="onSearchRecipe($event)"
+        class="serach-recipe"
+        type="text"
+        placeholder="Search">
     </div>
     <div class="container-recipe-item">
       <app-recipe-item
       *ngFor="let recipe of recipes$ | async"
       [recipe]="recipe"
-      (emitRecipe)="onFilterRecipe($event)"
       ></app-recipe-item>
     </div>
   </div>
 </div>
-
-
-
-<!-- {{ searchRecipe$ | async }} -->
-<!-- <router-outlet></router-outlet> -->
