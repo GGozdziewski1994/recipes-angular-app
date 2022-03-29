@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="form-recipe">
+    <h2 class="title">Add Recipe</h2>
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+      <div class="recipe-control recipe-name">
+        <label for="recipeName">Recipe Name</label>
+        <input
+          id="recipeName"
+          type="text"
+          formControlName="recipeName"/>
+      </div>
+      <div class="recipe-control recipe-description">
+        <label for="description">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          rows="5"
+          formControlName="description"></textarea>
+      </div>
+      <div class="recipe-control recipe-image">
+        <label for="image">Image URL</label>
+        <input
+          id="image"
+          type="text"
+          formControlName="image"/>
+      </div>
+      <div class="recipe-control recipe-rating">
+        <label for="rating">Rating</label>
+        <input
+          id="rating"
+          type="number"
+          formControlName="rating"/>
+      </div>
+      <div formArrayName="ingredients">
+        <div *ngFor="let ingredient of ingredientsFormArray; let i = index"
+          [formGroupName]="i">
+          <div>
+            <div class="recipe-control recipe-ingredient">
+              <div class="recipe-control-ingredient">
+                <label for="ingredient">Ingredient Name</label>
+                <input
+                  id="ingredientName"
+                  type="text"
+                  formControlName="name"
+                />
+              </div>
+              <div class="recipe-control-ingredient">
+                <label for="ingredient">Quantity</label>
+                <input
+                  id="ingredientQuantity"
+                  type="number"
+                  formControlName="quantity"
+                />
+              </div>
+              <div class="recipe-control-ingredient">
+                <button
+                  (click)="onRemoveIngredient(i)"
+                  type="button"
+                >X</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button
+          (click)="onAddIngredient()"
+          type="button"
+        >Add Ingredient</button>
+      </div>
+      <div class="btn-control">
+        <button type="submit">Add</button>
+        <button
+          (click)="onCancel()"
+          type="button"
+        >Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

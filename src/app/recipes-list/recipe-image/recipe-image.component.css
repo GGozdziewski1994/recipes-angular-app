@@ -1,0 +1,30 @@
+.modal-image {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  padding: 25px;
+  background: rgb(245, 245, 245);
+  border-radius: 10px;
+  z-index: 100;
+}
+
+.close-btn {
+  position: absolute;
+  cursor: pointer;
+  top: 1%;
+  right: 2%;
+}
+
+.modal-image img {
+  width: 400px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.322);
+  z-index: 50;
+}

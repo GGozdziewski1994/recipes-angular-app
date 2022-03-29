@@ -1,0 +1,36 @@
+.item-list {
+  grid-area: list;
+}
+
+.active {
+  background: gray;
+}
+
+.item-buttons {
+  grid-area: buttons;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-recipe,
+.details {
+  padding: 15px 20px;
+  width: 40%;
+}
+
+.item-form {
+  grid-area: form;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "list buttons"
+    "list form"
+    "list form"
+    "list form"
+    "list form";
+}

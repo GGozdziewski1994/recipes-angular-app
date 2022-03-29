@@ -1,0 +1,45 @@
+.container {
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  background: rgb(240, 240, 240);
+  padding: 10px;
+  /* height: 100%; */
+}
+
+.recipe {
+  padding: 10px;
+}
+
+.recipe-image img {
+  max-width: 250px;
+  cursor: pointer;
+}
+
+.recipe-delete {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.recipe-delete button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: rgb(185, 121, 23);
+  color: white;
+}
+
+.ingredients li {
+  list-style: none;
+}
+
+.title,
+.description,
+.preparating-time,
+.ingredients {
+  margin-bottom: 5px;
+}
+
+.title {
+  text-align: center;
+}

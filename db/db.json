@@ -1,0 +1,51 @@
+{
+  "recipes": [
+    {
+      "id": 0,
+      "recipeName": "Pizza",
+      "description": "This pizza is amazing",
+      "rating": 1,
+      "image": "https://cdn.pixabay.com/photo/2020/06/08/16/49/pizza-5275191_960_720.jpg",
+      "ingredients": [
+        {
+          "name": "chesse",
+          "quantity": 2
+        },
+        {
+          "name": "salami",
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "recipeName": "Pizza Margaritha",
+      "description": "This pizza is amazing",
+      "rating": 3,
+      "image": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg",
+      "ingredients": [
+        {
+          " name": "chesse",
+          "quantity": 2
+        },
+        {
+          "name": "salami",
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "recipeName": "Pasta",
+      "description": "qwert",
+      "image": "https://cdn.pixabay.com/photo/2016/11/23/18/31/pasta-1854245_960_720.jpg",
+      "rating": 2,
+      "ingredients": [
+        {
+          "name": "pasta",
+          "quantity": 2
+        }
+      ],
+      "id": 2
+    }
+  ]
+}
