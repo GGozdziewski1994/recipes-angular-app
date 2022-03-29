@@ -1,0 +1,55 @@
+.container {
+  margin: 20px;
+  padding: 10px;
+  background: rgb(234, 243, 234);
+}
+
+.title {
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.description {
+  display: flex;
+  padding: 10px;
+}
+
+.description p {
+  width: 50%;
+  text-align: center;
+}
+
+.description ul {
+  margin: 0 auto;
+}
+
+.description li {
+  list-style: none;
+  padding: 10px;
+  border: 1px solid black;
+  width: 200px;
+}
+
+.recipe-image {
+  text-align: center;
+}
+
+.recipe-image img {
+  max-width: 250px;
+}
+
+.recipe-delete {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.recipe-delete button {
+  border: none;
+  background: rgb(185, 155, 57);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}

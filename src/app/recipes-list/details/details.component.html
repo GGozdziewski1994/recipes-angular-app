@@ -1,1 +1,22 @@
-<p>details works!</p>
+<div class="container" *ngIf="recipe">
+  <div class="title">
+    <h3>{{ recipe.recipeName }}</h3>
+    <p>{{ recipe.rating | stars }}</p>
+  </div>
+  <div class="description">
+    <p>{{ recipe.description }}</p>
+    <ul>
+      <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }}: {{ ingredient.quantity}} szt.</li>
+    </ul>
+  </div>
+  <div class="recipe-image">
+    <a [routerLink]="'image/' + recipe.id.toString()"><img [src]="recipe.image"></a>
+  </div>
+  <div class="recipe-delete">
+    <button
+      (click)="onDeleteRecipe()"
+      type="button"
+    >Delete Recipe</button>
+  </div>
+</div>
+<router-outlet></router-outlet>

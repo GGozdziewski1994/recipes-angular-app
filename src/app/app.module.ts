@@ -21,8 +21,12 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: 'form', component: RecipeFormComponent },
-      { path: 'details', component: DetailsComponent },
-      { path: ':id', component: RecipeImageComponent },
+      { path: 'details', redirectTo: 'details/0', pathMatch: 'full' },
+      {
+        path: 'details/:id',
+        component: DetailsComponent,
+        children: [{ path: 'image/:id', component: RecipeImageComponent }],
+      },
     ],
   },
 ];

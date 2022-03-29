@@ -1,22 +1,9 @@
-<div class="container">
-  <div class="recipe">
-    <h3 class="title">Name: {{ recipe.recipeName }}</h3>
-    <p class="description">Description: {{ recipe.description }}</p>
-    <p class="preparating-time">Rating: {{ recipe.rating | stars}}</p>
-    <ul class="ingredients">
-      <p>Ingredient: </p>
-      <li
-        *ngFor="let ingredient of recipe.ingredients"
-      >Name: {{ ingredient.name }}, Quantity: {{ ingredient.quantity }}</li>
-    </ul>
-  </div>
-  <div class="recipe-image">
-    <a [routerLink]="recipe.id.toString()"><img [src]="recipe.image"></a>
-  </div>
-  <div class="recipe-delete">
-    <button
-      (click)="onDeleteRecipe()"
-      type="button"
-    >Delete Recipe</button>
-  </div>
+<a
+  [routerLink]="'details/' + recipe.id.toString()"
+  class="item-link">
+  <div class="container">
+    <h3 class="title">{{ recipe.recipeName }}</h3>
+    <p class="rating">Rating: {{ recipe.rating | stars}}</p>
 </div>
+</a>
+

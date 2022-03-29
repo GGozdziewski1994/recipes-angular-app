@@ -28,6 +28,6 @@ export class RecipeImageComponent implements OnInit {
 
   onClose() {
     this.recipeImage = '';
-    this.router.navigate(['/recipes']);
+    this.router.navigate(['/recipes/details/' + this.id]);
   }
 }
