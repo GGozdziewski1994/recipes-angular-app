@@ -23,15 +23,15 @@ export class RecipesApiService {
   private URL: string = 'http://localhost:3000/recipes';
   // recipe!: Recipes;
   // recipes: Recipes[] = [];
-  searchRecipe = new Subject<string>();
+  // searchRecipe = new Subject<string>();
   addRecipeSub = new Subject<Recipes>();
   deleteRecipe = new Subject<Recipes>();
 
   constructor(private http: HttpClient) {}
 
-  setSearchRecipe(value: string) {
-    this.searchRecipe.next(value);
-  }
+  // setSearchRecipe(value: string) {
+  //   this.searchRecipe.next(value);
+  // }
 
   addRecipe(recipe: Recipes) {
     return this.http.post<Recipes>(this.URL, recipe);
@@ -49,7 +49,7 @@ export class RecipesApiService {
     return this.http.delete<Recipes>(`${this.URL}/${id}`);
   }
 
-  get searchRecipe$() {
-    return this.searchRecipe.asObservable();
-  }
+  // get searchRecipe$() {
+  //   return this.searchRecipe.asObservable();
+  // }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filter, map, Observable, of } from 'rxjs';
+import { delay, filter, map, Observable, of } from 'rxjs';
 import { Recipes, RecipesApiService } from '../recipes-api.service';
 
 @Component({
@@ -26,15 +26,14 @@ export class RecipesListComponent implements OnInit {
   }
 
   private getSearchRecipes(value: string) {
-    this.recipes$ = this.recipeApiService
-      .getRecipes()
-      .pipe(
-        map((recipes) =>
-          recipes.filter((recipe) =>
-            recipe.recipeName.toLowerCase().includes(value.toLowerCase().trim())
-          )
+    this.recipes$ = this.recipeApiService.getRecipes().pipe(
+      delay(300),
+      map((recipes) =>
+        recipes.filter((recipe) =>
+          recipe.recipeName.toLowerCase().includes(value.toLowerCase().trim())
         )
-      );
+      )
+    );
   }
 
   private onFilterRecipe(recipe: Recipes) {
