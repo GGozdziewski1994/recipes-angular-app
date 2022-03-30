@@ -25,13 +25,12 @@ export class RecipeFormComponent implements OnInit {
     this.recipeApiService.addRecipe(this.recipeForm.value).subscribe((res) => {
       this.recipeApiService.addRecipeSub.next(res);
     });
-
-    this.onCancel();
+    this.recipeForm.reset();
   }
 
-  onCancel() {
-    this.router.navigate(['/recipes'], { relativeTo: this.route });
-  }
+  // onCancel() {
+  //   this.router.navigate(['/recipes'], { relativeTo: this.route });
+  // }
 
   onAddIngredient() {
     (<FormArray>this.recipeForm.get('ingredients')).push(

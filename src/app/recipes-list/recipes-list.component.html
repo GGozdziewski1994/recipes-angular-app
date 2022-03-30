@@ -9,9 +9,11 @@
     </div>
     <div class="container-recipe-item">
       <app-recipe-item
-      *ngFor="let recipe of recipes$ | async"
+      *ngFor="let recipe of recipes"
       [recipe]="recipe"
       ></app-recipe-item>
     </div>
   </div>
 </div>
+
+<!-- *ngFor="let recipe of recipes$ | async" -->
