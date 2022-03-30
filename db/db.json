@@ -36,13 +36,13 @@
     },
     {
       "recipeName": "Pasta",
-      "description": "qwert",
+      "description": "12345",
       "image": "https://cdn.pixabay.com/photo/2016/11/23/18/31/pasta-1854245_960_720.jpg",
-      "rating": 2,
+      "rating": 4,
       "ingredients": [
         {
-          "name": "pasta",
-          "quantity": 2
+          "name": "`1",
+          "quantity": 12
         }
       ],
       "id": 2
