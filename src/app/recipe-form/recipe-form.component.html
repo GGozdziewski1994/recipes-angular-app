@@ -26,10 +26,15 @@
       </div>
       <div class="recipe-control recipe-rating">
         <label for="rating">Rating</label>
-        <input
+        <!-- <input
           id="rating"
           type="number"
-          formControlName="rating"/>
+          formControlName="rating"/> -->
+          <span *ngIf="rating">Your rating: {{ rating }}</span>
+          <button
+            type="button"
+            class="btn-rating"
+            (click)="onIsRating()">Add rating</button>
       </div>
       <div formArrayName="ingredients">
         <div *ngFor="let ingredient of ingredientsFormArray; let i = index"
@@ -64,6 +69,7 @@
       </div>
       <div>
         <button
+          class="btn-add-ingredient"
           (click)="onAddIngredient()"
           type="button"
         >Add Ingredient</button>
@@ -74,3 +80,24 @@
     </form>
   </div>
 </div>
+
+<div *ngIf="isRating">
+  <button class="backdrop" (click)="onCloseRating()"></button>
+    <div class="modal-rating">
+    <h2>Recipe rating</h2>
+    <div class="rating">
+      <form [formGroup]="ratingForm" (ngSubmit)="getRating()">
+        <input formControlName="five" value="5" id="e5" type="radio"><label for="e5">☆</label>
+        <input formControlName="four" value="4" id="e4" type="radio"><label for="e4">☆</label>
+        <input formControlName="three" value="3" id="e3" type="radio"><label for="e3">☆</label>
+        <input formControlName="two" value="2" id="e2" type="radio"><label for="e2">☆</label>
+        <input formControlName="one" value="1" id="e1" type="radio"><label for="e1">☆</label>
+        <div>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

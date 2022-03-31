@@ -3,6 +3,14 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipesApiService } from '../recipes-api.service';
 
+interface Rating {
+  five: string;
+  foure: string;
+  three: string;
+  two: string;
+  one: string;
+}
+
 @Component({
   selector: 'app-recipe-form',
   templateUrl: './recipe-form.component.html',
@@ -10,6 +18,9 @@ import { RecipesApiService } from '../recipes-api.service';
 })
 export class RecipeFormComponent implements OnInit {
   recipeForm!: FormGroup;
+  ratingForm!: FormGroup;
+  isRating: boolean = false;
+  rating: number | null = null;
 
   constructor(
     private recipeApiService: RecipesApiService,
@@ -19,13 +30,36 @@ export class RecipeFormComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    this.ratingInitForm();
   }
 
   onSubmit() {
-    this.recipeApiService.addRecipe(this.recipeForm.value).subscribe((res) => {
-      this.recipeApiService.addRecipeSub.next(res);
-    });
+    this.recipeApiService
+      .addRecipe({ ...this.recipeForm.value, rating: this.rating })
+      .subscribe((res) => {
+        this.recipeApiService.addRecipeSub.next(res);
+      });
+
     this.recipeForm.reset();
+    this.rating = null;
+  }
+
+  onIsRating() {
+    this.isRating = true;
+    this.rating = null;
+  }
+
+  onCloseRating() {
+    this.isRating = false;
+  }
+
+  getRating() {
+    for (let value of Object.values<Rating>(this.ratingForm.value)) {
+      if (value !== null) {
+        this.rating = +value;
+      }
+    }
+    this.onCloseRating();
   }
 
   // onCancel() {
@@ -61,6 +95,16 @@ export class RecipeFormComponent implements OnInit {
           quantity: new FormControl(null),
         }),
       ]),
+    });
+  }
+
+  private ratingInitForm() {
+    this.ratingForm = new FormGroup({
+      five: new FormControl(null),
+      four: new FormControl(null),
+      three: new FormControl(null),
+      two: new FormControl(null),
+      one: new FormControl(null),
     });
   }
 }
