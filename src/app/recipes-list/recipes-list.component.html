@@ -1,12 +1,12 @@
 <div class="container">
   <div class="container-recipe">
-    <div class="container-recipe-search">
+    <div class="container-recipe-filter">
       <input
         (input)="onSearchRecipe($event)"
         class="serach-recipe"
         type="text"
         placeholder="Search">
-        <select [formControl]="sortControl">
+        <select [formControl]="sortControl" class="sorting">
           <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
         </select>
     </div>
