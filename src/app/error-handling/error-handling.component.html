@@ -1,0 +1,10 @@
+<div>
+  <div class="backdrop" (click)="onHandlingError()"></div>
+  <div class="modal-error">
+    <h2>Error</h2>
+    <div class="error">
+      <ng-content></ng-content>
+      <button (click)="onHandlingError()">OK</button>
+    </div>
+  </div>
+</div>

@@ -15,5 +15,8 @@
     </div>
   </div>
 </div>
-
-<!-- *ngFor="let recipe of recipes$ | async" -->
+<ng-container *ngIf="error">
+  <app-error-handling (error)="onHandlingError()">
+    <p>{{ error }}</p>
+  </app-error-handling>
+</ng-container>

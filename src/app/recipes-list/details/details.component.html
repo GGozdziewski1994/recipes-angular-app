@@ -20,3 +20,8 @@
   </div>
 </div>
 <router-outlet></router-outlet>
+<ng-container *ngIf="error">
+  <app-error-handling (error)="onHandlingError()">
+    <p>{{ error }}</p>
+  </app-error-handling>
+</ng-container>

@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
 import { DetailsComponent } from './recipes-list/details/details.component';
 import { StarsPipe } from './stars.pipe';
+import { ErrorHandlingComponent } from './error-handling/error-handling.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -42,6 +43,7 @@ const routes: Routes = [
     MainComponent,
     DetailsComponent,
     StarsPipe,
+    ErrorHandlingComponent,
   ],
   imports: [
     BrowserModule,

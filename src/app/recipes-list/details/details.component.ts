@@ -10,6 +10,7 @@ import { Recipes, RecipesApiService } from 'src/app/recipes-api.service';
 export class DetailsComponent implements OnInit {
   recipe!: Recipes;
   id!: number;
+  error: string | null = null;
 
   constructor(
     private recipesApiService: RecipesApiService,
@@ -20,16 +21,30 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.recipesApiService.getRecipe(this.id).subscribe((recipe) => {
-        this.recipe = recipe;
-      });
+      this.recipesApiService.getRecipe(this.id).subscribe(
+        (recipe) => {
+          this.recipe = recipe;
+        },
+        (error) => {
+          this.error = error.message;
+        }
+      );
     });
   }
 
   onDeleteRecipe() {
-    this.recipesApiService.onDeleteRecipe(this.id).subscribe((res) => {
-      this.recipesApiService.deleteRecipe.next(this.recipe);
-    });
+    this.recipesApiService.onDeleteRecipe(this.id).subscribe(
+      () => {
+        this.recipesApiService.deleteRecipe.next(this.recipe);
+      },
+      (error) => {
+        this.error = error.message;
+      }
+    );
     this.router.navigate(['recipes']);
+  }
+
+  onHandlingError() {
+    this.error = null;
   }
 }

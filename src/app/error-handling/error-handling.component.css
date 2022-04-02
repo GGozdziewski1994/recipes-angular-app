@@ -1,0 +1,36 @@
+.modal-error {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: rgb(252, 217, 216);
+  z-index: 100;
+}
+
+.modal-error h2 {
+  padding: 25px;
+  text-align: center;
+  background: red;
+}
+
+.error {
+  padding: 20px;
+  text-align: center;
+}
+
+.error button {
+  margin-top: 25px;
+  border: none;
+  padding: 10px 30px;
+  background: red;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.322);
+  z-index: 50;
+}

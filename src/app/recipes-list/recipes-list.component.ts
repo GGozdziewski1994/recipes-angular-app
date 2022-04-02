@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { debounceTime, delay, filter, map, Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs';
 import { Recipes, RecipesApiService } from '../recipes-api.service';
 
 @Component({
@@ -8,16 +8,18 @@ import { Recipes, RecipesApiService } from '../recipes-api.service';
   styleUrls: ['./recipes-list.component.css'],
 })
 export class RecipesListComponent implements OnInit {
-  // public recipes$: Observable<any> = of([]);
   public recipes: Recipes[] = [];
+  error: string | null = null;
 
   constructor(private recipeApiService: RecipesApiService) {}
 
   ngOnInit(): void {
-    // this.recipes$ = this.recipeApiService.getRecipes();
-    this.recipeApiService.getRecipes().subscribe((recipes) => {
-      this.recipes = recipes;
-    });
+    this.recipeApiService.getRecipes().subscribe(
+      (recipes) => {
+        this.recipes = recipes;
+      },
+      (error) => (this.error = error.message)
+    );
 
     this.recipeApiService.deleteRecipe.subscribe((value) => {
       this.onFilterRecipe(value);
@@ -33,6 +35,10 @@ export class RecipesListComponent implements OnInit {
     this.getSearchRecipes(value);
   }
 
+  onHandlingError() {
+    this.error = null;
+  }
+
   private getSearchRecipes(value: string) {
     this.recipeApiService
       .getRecipes()
@@ -44,7 +50,10 @@ export class RecipesListComponent implements OnInit {
           )
         )
       )
-      .subscribe((recipes) => (this.recipes = recipes));
+      .subscribe(
+        (recipes) => (this.recipes = recipes),
+        (error) => (this.error = error.message)
+      );
   }
 
   private onFilterRecipe(recipe: Recipes) {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { RecipesApiService } from '../recipes-api.service';
 
 interface Rating {
@@ -21,12 +20,9 @@ export class RecipeFormComponent implements OnInit {
   ratingForm!: FormGroup;
   isRating: boolean = false;
   rating: number | null = null;
+  error: string | null = null;
 
-  constructor(
-    private recipeApiService: RecipesApiService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private recipeApiService: RecipesApiService) {}
 
   ngOnInit() {
     this.initForm();
@@ -36,10 +32,14 @@ export class RecipeFormComponent implements OnInit {
   onSubmit() {
     this.recipeApiService
       .addRecipe({ ...this.recipeForm.value, rating: this.rating })
-      .subscribe((res) => {
-        this.recipeApiService.addRecipeSub.next(res);
-      });
-
+      .subscribe(
+        (res) => {
+          this.recipeApiService.addRecipeSub.next(res);
+        },
+        (error) => {
+          this.error = error.message;
+        }
+      );
     this.recipeForm.reset();
     this.rating = null;
   }
@@ -62,9 +62,9 @@ export class RecipeFormComponent implements OnInit {
     this.onCloseRating();
   }
 
-  // onCancel() {
-  //   this.router.navigate(['/recipes'], { relativeTo: this.route });
-  // }
+  onHandlingError() {
+    this.error = null;
+  }
 
   onAddIngredient() {
     (<FormArray>this.recipeForm.get('ingredients')).push(
