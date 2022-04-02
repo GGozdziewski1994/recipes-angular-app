@@ -3,15 +3,9 @@
   margin: 0 auto;
 }
 
-/* .container {
-  display: flex;
-} */
-
 .container-recipe {
   margin: 10px;
   padding: 10px;
-  /* background: rgb(212, 240, 212);
-  box-shadow: 4px 6px 8px rgba(65, 87, 65, 0.13); */
 }
 
 .container-recipe-item {
