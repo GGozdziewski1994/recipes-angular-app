@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { delay, map } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { map } from 'rxjs/operators';
 import { Recipes, RecipesApiService } from '../recipes-api.service';
 
 @Component({
@@ -9,7 +10,14 @@ import { Recipes, RecipesApiService } from '../recipes-api.service';
 })
 export class RecipesListComponent implements OnInit {
   public recipes: Recipes[] = [];
+  sortControl = new FormControl(null);
   error: string | null = null;
+  sortOptions = [
+    { value: 'recipeName,asc', label: 'sort a-z' },
+    { value: 'recipeName,desc', label: 'sort z-a' },
+    { value: 'rating,desc', label: 'sort descending rating' },
+    { value: 'rating,asc', label: 'sort ascending rating' },
+  ];
 
   constructor(private recipeApiService: RecipesApiService) {}
 
@@ -28,6 +36,12 @@ export class RecipesListComponent implements OnInit {
     this.recipeApiService.addRecipeSub.subscribe((recipe) => {
       this.recipes.push(recipe);
     });
+
+    this.sortControl.valueChanges
+      .pipe(map((value: string) => value.split(',')))
+      .subscribe(([sortName, sortValue]) => {
+        this.getSortRecipes(sortName, sortValue);
+      });
   }
 
   onSearchRecipe(event: Event) {
@@ -40,20 +54,22 @@ export class RecipesListComponent implements OnInit {
   }
 
   private getSearchRecipes(value: string) {
-    this.recipeApiService
-      .getRecipes()
-      .pipe(
-        delay(300),
-        map((recipes) =>
-          recipes.filter((recipe) =>
-            recipe.recipeName.toLowerCase().includes(value.toLowerCase().trim())
-          )
-        )
-      )
-      .subscribe(
-        (recipes) => (this.recipes = recipes),
-        (error) => (this.error = error.message)
-      );
+    const searchValue = value.toLowerCase().trim();
+    this.recipeApiService.getRecipesFilter(searchValue).subscribe(
+      (recipes) => {
+        this.recipes = recipes;
+      },
+      (error) => (this.error = error.message)
+    );
+  }
+
+  private getSortRecipes(sortName: string, sortValue: string) {
+    this.recipeApiService.getReciesSort(sortName, sortValue).subscribe(
+      (recipes) => {
+        this.recipes = recipes;
+      },
+      (error) => (this.error = error.message)
+    );
   }
 
   private onFilterRecipe(recipe: Recipes) {

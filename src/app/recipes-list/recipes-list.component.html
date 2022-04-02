@@ -6,6 +6,9 @@
         class="serach-recipe"
         type="text"
         placeholder="Search">
+        <select [formControl]="sortControl">
+          <option *ngFor="let option of sortOptions" [value]="option.value">{{ option.label }}</option>
+        </select>
     </div>
     <div class="container-recipe-item">
       <app-recipe-item

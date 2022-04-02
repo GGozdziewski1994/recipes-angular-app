@@ -38,6 +38,16 @@ export class RecipesApiService {
     return this.http.get<Recipes[]>(this.URL);
   }
 
+  getReciesSort(name: string, value: string) {
+    return this.http.get<Recipes[]>(
+      `${this.URL}?_sort=${name}&_order=${value}`
+    );
+  }
+
+  getRecipesFilter(search: string) {
+    return this.http.get<Recipes[]>(`${this.URL}?recipeName_like=${search}`);
+  }
+
   onDeleteRecipe(id: number) {
     return this.http.delete<Recipes>(`${this.URL}/${id}`);
   }
