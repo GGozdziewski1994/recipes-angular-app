@@ -1,3 +1,6 @@
 <header class="container-header">
-  <h2 class="title">Recipes</h2>
+  <h1 class="title">Recipes</h1>
+  <div class="btn-logout">
+    <button *ngIf="isAuthenticated" (click)="onLogout()">Logout</button>
+  </div>
 </header>

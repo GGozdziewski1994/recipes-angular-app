@@ -1,0 +1,42 @@
+<div class="container">
+  <div>
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+      <h2 class="title">{{ isLogin ? 'Login' : 'Sign up' }}</h2>
+      <div class="auth-control">
+        <label for="email">Mail</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email">
+      </div>
+      <div class="auth-control">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password">
+      </div>
+      <div class="auth-control" *ngIf="!isLogin">
+        <label for="role">Role</label>
+        <select formControlName="role">
+          <option
+            *ngFor="let role of roleOptions"
+            [value]="role.role"
+            >{{ role.role }}</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button
+          type="submit"
+          class="submit"
+          [disabled]="!authForm.valid"
+          >{{ isLogin ? 'Login' : 'Sign up' }}</button>
+        <button
+          class="toggle"
+          type="button"
+          (click)="switchAuthModelHandler()"
+        >{{ isLogin ? 'Create new account' : 'Login with existing account' }}</button>
+      </div>
+    </form>
+  </div>
+</div>

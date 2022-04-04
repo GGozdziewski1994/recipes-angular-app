@@ -47,5 +47,14 @@
       ],
       "id": 2
     }
+  ],
+  "auth": [
+    {
+      "email": "test@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "token": "8gsfpvhgj6rhnhdndc5cv9",
+      "id": 1
+    }
   ]
 }

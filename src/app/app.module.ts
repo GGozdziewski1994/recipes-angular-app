@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
@@ -12,14 +12,18 @@ import { RecipeImageComponent } from './recipes-list/recipe-image/recipe-image.c
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainComponent } from './main/main.component';
 import { DetailsComponent } from './recipes-list/details/details.component';
-import { StarsPipe } from './stars.pipe';
+import { StarsPipe } from './shared/stars.pipe';
 import { ErrorHandlingComponent } from './error-handling/error-handling.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   {
     path: 'recipes',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'form', component: RecipeFormComponent },
       { path: 'details', redirectTo: 'details/0', pathMatch: 'full' },
@@ -30,6 +34,7 @@ const routes: Routes = [
       },
     ],
   },
+  { path: 'auth', component: AuthComponent },
 ];
 
 @NgModule({
@@ -44,6 +49,7 @@ const routes: Routes = [
     DetailsComponent,
     StarsPipe,
     ErrorHandlingComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptorService,
+    //   multi: true,
+    // },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
