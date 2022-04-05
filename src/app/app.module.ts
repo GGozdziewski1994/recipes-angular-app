@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeItemComponent } from './recipes-list/recipe-item/recipe-item.component';
 import { HeaderComponent } from './header/header.component';
-import { RouterModule, Routes } from '@angular/router';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipeImageComponent } from './recipes-list/recipe-image/recipe-image.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,27 +14,7 @@ import { DetailsComponent } from './recipes-list/details/details.component';
 import { StarsPipe } from './shared/stars.pipe';
 import { ErrorHandlingComponent } from './error-handling/error-handling.component';
 import { AuthComponent } from './auth/auth.component';
-import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
-
-const routes: Routes = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-  {
-    path: 'recipes',
-    component: MainComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: 'form', component: RecipeFormComponent },
-      { path: 'details', redirectTo: 'details/0', pathMatch: 'full' },
-      {
-        path: 'details/:id',
-        component: DetailsComponent,
-        children: [{ path: 'image/:id', component: RecipeImageComponent }],
-      },
-    ],
-  },
-  { path: 'auth', component: AuthComponent },
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -53,17 +32,11 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptorService,
-    //   multi: true,
-    // },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
