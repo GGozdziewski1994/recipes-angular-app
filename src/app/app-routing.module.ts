@@ -7,6 +7,8 @@ import { MainComponent } from './main/main.component';
 import { DetailsComponent } from './recipes-list/details/details.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
+import { Role } from './shared/role.enum';
+import { RoleGuard } from './shared/role.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -15,7 +17,12 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'form', component: RecipeFormComponent },
+      {
+        path: 'form',
+        component: RecipeFormComponent,
+        canActivate: [RoleGuard],
+        data: { roles: [Role.Author] },
+      },
       { path: 'details', redirectTo: 'details/0', pathMatch: 'full' },
       {
         path: 'details/:id',

@@ -55,6 +55,13 @@
       "role": "user",
       "token": "8gsfpvhgj6rhnhdndc5cv9",
       "id": 1
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "123456",
+      "role": "author",
+      "token": "7rnmx6k42lt1otpylx51rf",
+      "id": 2
     }
   ]
 }

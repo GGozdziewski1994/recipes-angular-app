@@ -25,6 +25,10 @@ export class AuthService {
     return this.authorized.asObservable();
   }
 
+  get user$() {
+    return this.user.asObservable();
+  }
+
   signup(email: string, password: string, role: string) {
     return this.http
       .post<AuthResData>(this.URL, {
@@ -94,7 +98,7 @@ export class AuthService {
     const user = new User(email, id, role, token);
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
-    this.authorized.next(!!localStorage.getItem('userData'));
+    this.authorized.next(!!user);
   }
 
   private generateToken() {
