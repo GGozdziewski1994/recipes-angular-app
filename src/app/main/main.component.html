@@ -4,8 +4,8 @@
   </div>
   <div class="item-buttons">
     <button routerLink="form" routerLinkActive="active" class="add-recipe">Add rcipe</button>
-    <button routerLink="details" routerLinkActive="active" class="details">Details</button>
-  </div>
+    <button [routerLink]="['details/', recipeDitailId ]" routerLinkActive="active" class="details">Details</button>
+  </div>]
   <div class="item-form">
     <router-outlet></router-outlet>
   </div>

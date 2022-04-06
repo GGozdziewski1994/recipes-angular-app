@@ -23,6 +23,7 @@ export class RecipesApiService {
   private URL: string = 'http://localhost:3000/recipes';
   addRecipeSub = new Subject<Recipes>();
   deleteRecipe = new Subject<Recipes>();
+  recipeDetail = new Subject<Recipes>();
 
   constructor(private http: HttpClient) {}
 
@@ -34,8 +35,12 @@ export class RecipesApiService {
     return this.http.get<Recipes>(`${this.URL}/${id}`);
   }
 
-  getRecipes() {
-    return this.http.get<Recipes[]>(this.URL);
+  getRecipes(authorId: number | null) {
+    if (authorId) {
+      return this.http.get<Recipes[]>(`${this.URL}?authorId_like=${authorId}`);
+    } else {
+      return this.http.get<Recipes[]>(this.URL);
+    }
   }
 
   getReciesSort(name: string, value: string) {

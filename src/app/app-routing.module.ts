@@ -23,7 +23,7 @@ const routes: Routes = [
         canActivate: [RoleGuard],
         data: { roles: [Role.Author] },
       },
-      { path: 'details', redirectTo: 'details/0', pathMatch: 'full' },
+      { path: 'details/:id', redirectTo: 'details/:id', pathMatch: 'full' },
       {
         path: 'details/:id',
         component: DetailsComponent,

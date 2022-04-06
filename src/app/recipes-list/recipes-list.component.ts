@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 import { Recipes, RecipesApiService } from '../recipes-api.service';
 
 @Component({
@@ -18,13 +19,24 @@ export class RecipesListComponent implements OnInit {
     { value: 'rating,desc', label: 'sort descending rating' },
     { value: 'rating,asc', label: 'sort ascending rating' },
   ];
+  authorId!: number | null;
 
-  constructor(private recipeApiService: RecipesApiService) {}
+  constructor(
+    private recipeApiService: RecipesApiService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.recipeApiService.getRecipes().subscribe(
+    this.authService.user$.subscribe((user) => {
+      if (user?.role === 'author') {
+        this.authorId = user.id;
+      }
+    });
+
+    this.recipeApiService.getRecipes(this.authorId).subscribe(
       (recipes) => {
         this.recipes = recipes;
+        this.recipeApiService.recipeDetail.next(recipes[0]);
       },
       (error) => (this.error = error.message)
     );

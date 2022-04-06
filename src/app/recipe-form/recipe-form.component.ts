@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { map } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { RecipesApiService } from '../recipes-api.service';
 
 interface Rating {
@@ -21,17 +23,30 @@ export class RecipeFormComponent implements OnInit {
   isRating: boolean = false;
   rating: number | null = null;
   error: string | null = null;
+  authorId!: number;
 
-  constructor(private recipeApiService: RecipesApiService) {}
+  constructor(
+    private recipeApiService: RecipesApiService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.initForm();
     this.ratingInitForm();
+    this.authService.user$.subscribe((user) => {
+      if (user) {
+        this.authorId = user.id;
+      }
+    });
   }
 
   onSubmit() {
     this.recipeApiService
-      .addRecipe({ ...this.recipeForm.value, rating: this.rating })
+      .addRecipe({
+        ...this.recipeForm.value,
+        rating: this.rating,
+        authorId: this.authorId,
+      })
       .subscribe(
         (res) => {
           this.recipeApiService.addRecipeSub.next(res);
