@@ -14,10 +14,10 @@ export class RecipesListComponent implements OnInit {
   sortControl = new FormControl(null);
   error: string | null = null;
   sortOptions = [
-    { value: 'recipeName,asc', label: 'sort a-z' },
-    { value: 'recipeName,desc', label: 'sort z-a' },
-    { value: 'rating,desc', label: 'sort descending rating' },
-    { value: 'rating,asc', label: 'sort ascending rating' },
+    { value: 'recipeName,asc', label: 'Sort A-Z' },
+    { value: 'recipeName,desc', label: 'Sort Z-A' },
+    { value: 'rating,desc', label: 'Sort descending' },
+    { value: 'rating,asc', label: 'Sort ascending' },
   ];
   authorId!: number | null;
 

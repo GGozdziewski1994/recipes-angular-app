@@ -3,7 +3,7 @@
     <app-recipes-list></app-recipes-list>
   </div>
   <div class="item-buttons">
-    <button routerLink="form" routerLinkActive="active" class="add-recipe">Add rcipe</button>
+    <button *ngIf="isAuthor === 'author'" routerLink="form" routerLinkActive="active" class="add-recipe">Add rcipe</button>
     <button [routerLink]="['details/', recipeDitailId ]" routerLinkActive="active" class="details">Details</button>
   </div>]
   <div class="item-form">

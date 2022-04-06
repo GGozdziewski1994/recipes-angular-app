@@ -15,6 +15,14 @@
   align-items: center;
 }
 
+.item-buttons button {
+  border: none;
+  background: rgb(110, 122, 110);
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 5px;
+}
+
 .add-recipe,
 .details {
   padding: 15px 20px;
