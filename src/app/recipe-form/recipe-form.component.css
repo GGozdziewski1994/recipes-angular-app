@@ -82,6 +82,16 @@
   background: rgb(111, 155, 111);
 }
 
+.btn-control button:disabled {
+  cursor: not-allowed;
+  background: rgba(111, 155, 111, 0.644);
+}
+
+.text-error {
+  margin-top: 5px;
+  color: red;
+}
+
 .modal-rating {
   position: absolute;
   top: 30%;

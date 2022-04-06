@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { RecipesApiService } from '../recipes-api.service';
@@ -100,14 +100,17 @@ export class RecipeFormComponent implements OnInit {
 
   private initForm() {
     this.recipeForm = new FormGroup({
-      recipeName: new FormControl(null),
-      description: new FormControl(null),
-      image: new FormControl(null),
+      recipeName: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required]),
+      image: new FormControl(null, [Validators.required]),
       rating: new FormControl(null),
       ingredients: new FormArray([
         new FormGroup({
-          name: new FormControl(null),
-          quantity: new FormControl(null),
+          name: new FormControl(null, [Validators.required]),
+          quantity: new FormControl(null, [
+            Validators.required,
+            Validators.min(0),
+          ]),
         }),
       ]),
     });

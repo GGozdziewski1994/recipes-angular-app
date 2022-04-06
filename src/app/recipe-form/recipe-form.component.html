@@ -8,6 +8,10 @@
           id="recipeName"
           type="text"
           formControlName="recipeName"/>
+          <p *ngIf="recipeForm.controls['recipeName'].touched &&
+          recipeForm.controls['recipeName'].errors"
+          class="text-error"
+          >The recipe name can not be empty</p>
       </div>
       <div class="recipe-control recipe-description">
         <label for="description">Description</label>
@@ -16,6 +20,10 @@
           id="description"
           rows="5"
           formControlName="description"></textarea>
+          <p *ngIf="recipeForm.controls['description'].touched &&
+          recipeForm.controls['description'].errors"
+          class="text-error"
+          >The description can not be empty</p>
       </div>
       <div class="recipe-control recipe-image">
         <label for="image">Image URL</label>
@@ -23,13 +31,13 @@
           id="image"
           type="text"
           formControlName="image"/>
+          <p *ngIf="recipeForm.controls['image'].touched &&
+          recipeForm.controls['image'].errors"
+          class="text-error"
+          >The image can not be empty</p>
       </div>
       <div class="recipe-control recipe-rating">
         <label for="rating">Rating</label>
-        <!-- <input
-          id="rating"
-          type="number"
-          formControlName="rating"/> -->
           <span *ngIf="rating">Your rating: {{ rating }}</span>
           <button
             type="button"
@@ -75,7 +83,7 @@
         >Add Ingredient</button>
       </div>
       <div class="btn-control">
-        <button type="submit">Add</button>
+        <button [disabled]="!recipeForm.valid" type="submit">Add</button>
       </div>
     </form>
   </div>
