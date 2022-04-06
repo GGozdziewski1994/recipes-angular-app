@@ -12,7 +12,7 @@
   <div class="recipe-image">
     <a [routerLink]="'image/' + recipe.id.toString()"><img [src]="recipe.image"></a>
   </div>
-  <div class="recipe-delete">
+  <div *ngIf="isAuthor" class="recipe-delete">
     <button
       (click)="onDeleteRecipe()"
       type="button"
