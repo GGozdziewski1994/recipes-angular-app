@@ -43,14 +43,26 @@ export class RecipesApiService {
     }
   }
 
-  getReciesSort(name: string, value: string) {
-    return this.http.get<Recipes[]>(
-      `${this.URL}?_sort=${name}&_order=${value}`
-    );
+  getReciesSort(name: string, value: string, authorId: number | null) {
+    if (authorId) {
+      return this.http.get<Recipes[]>(
+        `${this.URL}?_sort=${name}&_order=${value}&authorId_like=${authorId}`
+      );
+    } else {
+      return this.http.get<Recipes[]>(
+        `${this.URL}?_sort=${name}&_order=${value}`
+      );
+    }
   }
 
-  getRecipesFilter(search: string) {
-    return this.http.get<Recipes[]>(`${this.URL}?recipeName_like=${search}`);
+  getRecipesFilter(search: string, authorId: number | null) {
+    if (authorId) {
+      return this.http.get<Recipes[]>(
+        `${this.URL}?recipeName_like=${search}&authorId_like=${authorId}`
+      );
+    } else {
+      return this.http.get<Recipes[]>(`${this.URL}?recipeName_like=${search}`);
+    }
   }
 
   onDeleteRecipe(id: number) {

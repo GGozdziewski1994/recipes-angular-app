@@ -67,21 +67,25 @@ export class RecipesListComponent implements OnInit {
 
   private getSearchRecipes(value: string) {
     const searchValue = value.toLowerCase().trim();
-    this.recipeApiService.getRecipesFilter(searchValue).subscribe(
-      (recipes) => {
-        this.recipes = recipes;
-      },
-      (error) => (this.error = error.message)
-    );
+    this.recipeApiService
+      .getRecipesFilter(searchValue, this.authorId)
+      .subscribe(
+        (recipes) => {
+          this.recipes = recipes;
+        },
+        (error) => (this.error = error.message)
+      );
   }
 
   private getSortRecipes(sortName: string, sortValue: string) {
-    this.recipeApiService.getReciesSort(sortName, sortValue).subscribe(
-      (recipes) => {
-        this.recipes = recipes;
-      },
-      (error) => (this.error = error.message)
-    );
+    this.recipeApiService
+      .getReciesSort(sortName, sortValue, this.authorId)
+      .subscribe(
+        (recipes) => {
+          this.recipes = recipes;
+        },
+        (error) => (this.error = error.message)
+      );
   }
 
   private onFilterRecipe(recipe: Recipes) {

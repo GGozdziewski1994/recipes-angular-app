@@ -49,14 +49,18 @@
       "id": 2
     },
     {
-      "recipeName": "Pasta",
-      "description": "qwetr",
-      "image": "https://cdn.pixabay.com/photo/2016/11/23/18/31/pasta-1854245_960_720.jpg",
+      "recipeName": "Burger",
+      "description": "This burger is the best!",
+      "image": "https://cdn.pixabay.com/photo/2020/10/05/19/55/hamburger-5630646_960_720.jpg",
       "rating": 5,
       "ingredients": [
         {
-          "name": "pasta",
-          "quantity": 5
+          "name": "chessa",
+          "quantity": 2
+        },
+        {
+          "name": "Roll",
+          "quantity": 1
         }
       ],
       "authorId": 2,
