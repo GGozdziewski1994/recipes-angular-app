@@ -16,14 +16,14 @@ export interface AuthResData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private URL: string = 'http://localhost:3000/auth';
-  private authorized = new BehaviorSubject<boolean>(false);
-  user = new BehaviorSubject<User | null>(null);
+  // private authorized = new BehaviorSubject<boolean>(false);
+  private user = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  get authorized$() {
-    return this.authorized.asObservable();
-  }
+  // get authorized$() {
+  //   return this.authorized.asObservable();
+  // }
 
   get user$() {
     return this.user.asObservable();
@@ -83,8 +83,8 @@ export class AuthService {
 
     if (loadedUser.token) {
       this.user.next(loadedUser);
-      this.authorized.next(!!loadedUser);
-      this.router.navigate(['recipes']);
+      // this.authorized.next(!!loadedUser);
+      // this.router.navigate(['recipes']);
     }
   }
 
@@ -98,7 +98,7 @@ export class AuthService {
     const user = new User(email, id, role, token);
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));
-    this.authorized.next(!!user);
+    // this.authorized.next(!!user);
   }
 
   private generateToken() {

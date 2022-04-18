@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { User } from '../auth/user.model';
 import { RecipesApiService } from '../recipes-api.service';
 
 @Component({

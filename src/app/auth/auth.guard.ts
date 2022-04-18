@@ -15,10 +15,10 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService.authorized$.pipe(
+    return this.authService.user$.pipe(
       take(1),
       map((isAuth) => {
-        if (isAuth) {
+        if (!!isAuth) {
           return true;
         }
 
